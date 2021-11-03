@@ -79,11 +79,27 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>  
                     <div  class="col-md-6">
+                        <label for="">Etapa de vida:</label>
+                        <select class="form-control <?php echo e($errors->has('etapa') ? 'is-invalid':''); ?>" id="opetapa" name="etapa"  value="<?php echo e(old('etapa')); ?>" onChange="validarEdadyEtapa(this.value)" >
+                            <option  selected ></option>
+                           
+                        </select>
+                        <?php $__errorArgs = ['etapa'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                             <div class="invalid-feedback"><?php echo e($message); ?></div>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+                    <div  class="col-md-6">
                         <label for="">Sexo:</label>
                         <select class="form-control <?php echo e($errors->has('sexo') ? 'is-invalid':''); ?>" id="opsexo" name="sexo"  value="<?php echo e(old('sexo')); ?>" onChange="mostrar(this.value)"   >
                             <option selected></option>
-                            <option id ="MACHO" value="MACHO"  <?php if(old('sexo') == "MACHO"): ?> <?php echo e('selected'); ?> <?php endif; ?>>MACHO</option>
-                            <option id="HEMBRA" value="HEMBRA" <?php if(old('sexo') == "HEMBRA"): ?> <?php echo e('selected'); ?> <?php endif; ?>>HEMBRA</option>
+                            
                          </select>
                          <?php $__errorArgs = ['sexo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -97,30 +113,41 @@ endif;
 unset($__errorArgs, $__bag); ?>
 
                     </div> 
+                    
                     <div  class="col-md-6">
-                        <label for="">Etapa de vida:</label>
-                        <select class="form-control <?php echo e($errors->has('etapa') ? 'is-invalid':''); ?>" id="opetapa" name="etapa"  value="<?php echo e(old('etapa')); ?>" onChange="validarEdadyEtapa(this.value)" >
-                            <option  selected ></option>
-                            <option id ="TH" value="TERNERA" <?php if(old('etapa') == "TERNERA"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">TERNERA</option>
-                            <option id ="TM" value="TERNERO" <?php if(old('etapa') == "TERNERO"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">TERNERO</option>
-                            <option id ="VA" value="VACONILLA"<?php if(old('etapa') == "VACONILLA"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">VACONILLA</option>
-                            <option  id ="VACO" value="VACONA"<?php if(old('etapa') == "VACONA"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">VACONA</option>
-                            <option  id ="V" value="VACA" <?php if(old('etapa') == "VACA"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;">VACA</option>
-                            <option id="TORE" value="TORETE"<?php if(old('etapa') == "TORETE"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">TORETE</option>
-                            <option id ="TO"value="TORO" <?php if(old('etapa') == "TORO"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;" >TORO</option>
-                        </select>
-                        <?php $__errorArgs = ['etapa'];
+                        <label for="">Edad-Meses:</label>
+                        <input type="int" class="form-control <?php echo e($errors->has('edad') ? 'is-invalid':''); ?>" id="edad" name="edad"  value="<?php echo e(old('edad')); ?>" onChange="ValidarEdad(this.value)" Disabled=disabled >
+                        <?php $__errorArgs = ['edad'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                             <div class="invalid-feedback"><?php echo e($message); ?></div>
+                           <div class="invalid-feedback"><?php echo e($message); ?></div>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-                    
+
+                    <div  class="col-md-6">
+                        <label for="">Embarazo:</label>
+                        <select class="form-control <?php echo e($errors->has('estado_de_gestacion') ? 'is-invalid':''); ?>" id="embarazo" name="estado_de_gestacion"  value="<?php echo e(old('estado_de_gestacion')); ?>" onChange="validarEmbarazo(this.value)">
+                            <option selected></option>
+                           
+                        </select>
+                        <?php $__errorArgs = ['estado_de_gestacion'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="invalid-feedback"><?php echo e($message); ?></div>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+
+
                     <div  class="col-md-6">
                         <label for="">Origen:</label>
                         <select class="form-control <?php echo e($errors->has('origen') ? 'is-invalid':''); ?>" id="origen" name="origen"  value="<?php echo e(old('origen')); ?>">
@@ -140,20 +167,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                     
-                    <div  class="col-md-6">
-                        <label for="">Edad-Meses:</label>
-                        <input type="int" class="form-control <?php echo e($errors->has('edad') ? 'is-invalid':''); ?>" id="edad" name="edad"  value="<?php echo e(old('edad')); ?>" onChange="ValidarEdad(this.value)" Disabled=disabled >
-                        <?php $__errorArgs = ['edad'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                           <div class="invalid-feedback"><?php echo e($message); ?></div>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                    </div>
+                   
 
                     <div  class="col-md-6">
                         <label for="">Estado de Salud:</label>
@@ -174,24 +188,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
                     
-                    <div  class="col-md-6">
-                        <label for="">Embarazo:</label>
-                        <select class="form-control <?php echo e($errors->has('estado_de_gestacion') ? 'is-invalid':''); ?>" id="embarazo" name="estado_de_gestacion"  value="<?php echo e(old('estado_de_gestacion')); ?>" onChange="validarEmbarazo(this.value)">
-                            <option selected></option>
-                            <option id="SI" value="SI"<?php if(old('estado_de_gestacion') == "SI"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">SI</option>
-                            <option id="NO" value="NO"<?php if(old('estado_de_gestacion') == "NO"): ?> <?php echo e('selected'); ?><?php endif; ?> style="display: none;">NO</option>
-                        </select>
-                        <?php $__errorArgs = ['estado_de_gestacion'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                            <div class="invalid-feedback"><?php echo e($message); ?></div>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                    </div>
+                   
                     
                     <div  class="col-md-6">
                         <label for="">Ubicacion:</label>
@@ -237,10 +234,7 @@ unset($__errorArgs, $__bag); ?>
                     <div  class="col-md-6">
                         <label for="">Estado Actual:</label>
                         <select class="form-control " id="estado" name="actual_state" value="<?php echo e(old('actual_state')); ?>">
-                            <option id="ACTIVO" value="ACTIVO"<?php if(old('actual_state') == "ACTIVO"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;">ACTIVO</option>
-                            <option id="VENDIDO" value="VENDIDO"<?php if(old('actual_state') == "VENDIDO"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;">VENDIDO</option>
-                            <option id="REPRODUCCIÓN" value="REPRODUCCIÓN"<?php if(old('actual_state') == "REPRODUCCIÓN"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;">REPRODUCCIÓN</option>
-                            <option id="INACTIVO" value="INACTIVO"<?php if(old('actual_state') == "INACTIVO"): ?> <?php echo e('selected'); ?> <?php endif; ?> style="display: none;">INACTIVO</option>
+                           
                        </select>
                        
                     

@@ -16,15 +16,20 @@ class CreateFileReproductionArtificialTable extends Migration
         Schema::create('file_reproduction_artificial', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table-> unsignedBigInteger('animalCode_id_m');
+            $table->unsignedBigInteger('animalCode_id_m');
             $table->foreign('animalCode_id_m')->references('id')->on('file_animale')
                   ->onDelete('cascade')->onUpdate('cascade');
-
             $table-> unsignedBigInteger('artificial_id')->nullable();
             $table->foreign('artificial_id')->references('id')->on('artificial_reproduction')
                   ->onDelete('set null')->onUpdate('cascade');
-            $table->string('reproduction_state');
-            $table->string('actual_state');
+            $table-> unsignedBigInteger('reproduction_state_id')->nullable();
+            $table->foreign('reproduction_state_id')->references('id')->on('reproduction_state')
+                    ->onDelete('set null')->onUpdate('cascade');
+            
+            $table-> unsignedBigInteger('actual_state_infor_id')->nullable();
+            $table->foreign('actual_state_infor_id')->references('id')->on('actual_stateactual_state_infor')
+                    ->onDelete('set null')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }

@@ -51,34 +51,47 @@
                         @enderror
                     </div>  
                     <div  class="col-md-6">
+                        <label for="">Etapa de vida:</label>
+                        <select class="form-control {{$errors->has('etapa') ? 'is-invalid':''}}" id="opetapa" name="etapa"  value="{{old('etapa')}}" onChange="validarEdadyEtapa(this.value)" >
+                            <option  selected ></option>
+                           
+                        </select>
+                        @error('etapa')
+                             <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div  class="col-md-6">
                         <label for="">Sexo:</label>
                         <select class="form-control {{$errors->has('sexo') ? 'is-invalid':''}}" id="opsexo" name="sexo"  value="{{old('sexo')}}" onChange="mostrar(this.value)"   >
                             <option selected></option>
-                            <option id ="MACHO" value="MACHO"  @if(old('sexo') == "MACHO") {{'selected'}} @endif>MACHO</option>
-                            <option id="HEMBRA" value="HEMBRA" @if(old('sexo') == "HEMBRA") {{'selected'}} @endif>HEMBRA</option>
+                            
                          </select>
                          @error('sexo')
                                <div class="invalid-feedback">{{$message}}</div>
                          @enderror
 
                     </div> 
+                    
                     <div  class="col-md-6">
-                        <label for="">Etapa de vida:</label>
-                        <select class="form-control {{$errors->has('etapa') ? 'is-invalid':''}}" id="opetapa" name="etapa"  value="{{old('etapa')}}" onChange="validarEdadyEtapa(this.value)" >
-                            <option  selected ></option>
-                            <option id ="TH" value="TERNERA" @if(old('etapa') == "TERNERA") {{'selected'}}@endif style="display: none;">TERNERA</option>
-                            <option id ="TM" value="TERNERO" @if(old('etapa') == "TERNERO") {{'selected'}}@endif style="display: none;">TERNERO</option>
-                            <option id ="VA" value="VACONILLA"@if(old('etapa') == "VACONILLA") {{'selected'}}@endif style="display: none;">VACONILLA</option>
-                            <option  id ="VACO" value="VACONA"@if(old('etapa') == "VACONA") {{'selected'}}@endif style="display: none;">VACONA</option>
-                            <option  id ="V" value="VACA" @if(old('etapa') == "VACA") {{'selected'}} @endif style="display: none;">VACA</option>
-                            <option id="TORE" value="TORETE"@if(old('etapa') == "TORETE") {{'selected'}}@endif style="display: none;">TORETE</option>
-                            <option id ="TO"value="TORO" @if(old('etapa') == "TORO") {{'selected'}} @endif style="display: none;" >TORO</option>
-                        </select>
-                        @error('etapa')
-                             <div class="invalid-feedback">{{$message}}</div>
+                        <label for="">Edad-Meses:</label>
+                        <input type="int" class="form-control {{$errors->has('edad') ? 'is-invalid':''}}" id="edad" name="edad"  value="{{old('edad')}}" onChange="ValidarEdad(this.value)" Disabled=disabled >
+                        @error('edad')
+                           <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
-                    
+
+                    <div  class="col-md-6">
+                        <label for="">Embarazo:</label>
+                        <select class="form-control {{$errors->has('estado_de_gestacion') ? 'is-invalid':''}}" id="embarazo" name="estado_de_gestacion"  value="{{old('estado_de_gestacion')}}" onChange="validarEmbarazo(this.value)">
+                            <option selected></option>
+                           
+                        </select>
+                        @error('estado_de_gestacion')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+
+
                     <div  class="col-md-6">
                         <label for="">Origen:</label>
                         <select class="form-control {{$errors->has('origen') ? 'is-invalid':''}}" id="origen" name="origen"  value="{{old('origen')}}">
@@ -91,13 +104,7 @@
                     @enderror
                     </div>
                     
-                    <div  class="col-md-6">
-                        <label for="">Edad-Meses:</label>
-                        <input type="int" class="form-control {{$errors->has('edad') ? 'is-invalid':''}}" id="edad" name="edad"  value="{{old('edad')}}" onChange="ValidarEdad(this.value)" Disabled=disabled >
-                        @error('edad')
-                           <div class="invalid-feedback">{{$message}}</div>
-                        @enderror
-                    </div>
+                   
 
                     <div  class="col-md-6">
                         <label for="">Estado de Salud:</label>
@@ -111,17 +118,7 @@
                         @enderror
                     </div>
                     
-                    <div  class="col-md-6">
-                        <label for="">Embarazo:</label>
-                        <select class="form-control {{$errors->has('estado_de_gestacion') ? 'is-invalid':''}}" id="embarazo" name="estado_de_gestacion"  value="{{old('estado_de_gestacion')}}" onChange="validarEmbarazo(this.value)">
-                            <option selected></option>
-                            <option id="SI" value="SI"@if(old('estado_de_gestacion') == "SI") {{'selected'}}@endif style="display: none;">SI</option>
-                            <option id="NO" value="NO"@if(old('estado_de_gestacion') == "NO") {{'selected'}}@endif style="display: none;">NO</option>
-                        </select>
-                        @error('estado_de_gestacion')
-                            <div class="invalid-feedback">{{$message}}</div>
-                        @enderror
-                    </div>
+                   
                     
                     <div  class="col-md-6">
                         <label for="">Ubicacion:</label>
@@ -153,10 +150,7 @@
                     <div  class="col-md-6">
                         <label for="">Estado Actual:</label>
                         <select class="form-control " id="estado" name="actual_state" value="{{old('actual_state')}}">
-                            <option id="ACTIVO" value="ACTIVO"@if(old('actual_state') == "ACTIVO") {{'selected'}} @endif style="display: none;">ACTIVO</option>
-                            <option id="VENDIDO" value="VENDIDO"@if(old('actual_state') == "VENDIDO") {{'selected'}} @endif style="display: none;">VENDIDO</option>
-                            <option id="REPRODUCCIÓN" value="REPRODUCCIÓN"@if(old('actual_state') == "REPRODUCCIÓN") {{'selected'}} @endif style="display: none;">REPRODUCCIÓN</option>
-                            <option id="INACTIVO" value="INACTIVO"@if(old('actual_state') == "INACTIVO") {{'selected'}} @endif style="display: none;">INACTIVO</option>
+                           
                        </select>
                        
                     
