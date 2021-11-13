@@ -23,7 +23,7 @@ class CreateFileAnimaleTable extends Migration
                             ->onDelete('set null')
                             ->onUpdate('cascade');
             $table->unsignedBigInteger('stage_id')->nullable();
-            $table->foreign('set null')->references('id')->on('stage')
+            $table->foreign('stage_id')->references('id')->on('stage')
                            ->onDelete('cascade')->onUpdate('cascade');
             $table->string('source',20);
             $table->string('health_condition',20);
@@ -32,14 +32,7 @@ class CreateFileAnimaleTable extends Migration
                             ->onDelete('set null')
                             ->onUpdate('cascade');     
             $table->string('conceived',25);
-            $table->unsignedBigInteger('mother_id')->nullable();
-            $table->foreign('mother_id')->references('id')->on('mother')
-                            ->onDelete('set null')
-                            ->onUpdate('cascade');
-            $table->unsignedBigInteger('father_id')->nullable();
-            $table->foreign('father_id')->references('id')->on('father')
-                            ->onDelete('set null')
-                            ->onUpdate('cascade');
+           
 
             $table->unsignedBigInteger('actual_state_animal_id')->nullable();
             $table->foreign('actual_state_animal_id')->references('id')->on('actual_state_animal')

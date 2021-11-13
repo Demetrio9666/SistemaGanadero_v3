@@ -24,7 +24,9 @@ class CreateDewormingControlTable extends Migration
             $table->foreign('deworming_id')->references('id')->on('dewormer')
             ->onDelete('set null')->onUpdate('cascade');
             $table->date('date_r');
-            $table->string('actual_state');
+            $table-> unsignedBigInteger('actual_state_infor_id')->nullable();
+            $table->foreign('actual_state_infor_id')->references('id')->on('actual_state_infor')
+                    ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

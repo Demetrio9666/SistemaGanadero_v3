@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMotherTable extends Migration
+class CreateCompanyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateMotherTable extends Migration
      */
     public function up()
     {
-        Schema::create('mother', function (Blueprint $table) {
+        Schema::create('company', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('direction');
+            $table->string('telephone');
+            $table->string('manager');
+
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateMotherTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mother');
+        Schema::dropIfExists('company');
     }
 }

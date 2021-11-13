@@ -17,7 +17,13 @@ class CreateLocationTable extends Migration
             $table->id();
             $table->string('location_d');
             $table->string('description');
-            $table->string('actual_state');
+            $table->unsignedBigInteger('branch_office_id');
+            $table->foreign('branch_office_id')->references('id')->on('branch_office')
+                            ->onDelete('cascade')
+                            ->onUpdate('cascade');
+            $table-> unsignedBigInteger('actual_state_infor_id')->nullable();
+            $table->foreign('actual_state_infor_id')->references('id')->on('actual_state_infor')
+                    ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

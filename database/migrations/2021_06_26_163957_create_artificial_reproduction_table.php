@@ -23,7 +23,9 @@ class CreateArtificialReproductionTable extends Migration
 
             $table->string('reproduccion',10);
             $table->string('supplier');
-            $table->string('actual_state');
+            $table->unsignedBigInteger('actual_state_infor_id')->nullable();
+            $table->foreign('actual_state_infor_id')->references('id')->on('actual_state_infor')
+                    ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

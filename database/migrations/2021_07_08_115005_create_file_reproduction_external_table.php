@@ -30,9 +30,9 @@ class CreateFileReproductionExternalTable extends Migration
             $table-> unsignedBigInteger('reproduction_state_id')->nullable();
             $table->foreign('reproduction_state_id')->references('id')->on('reproduction_state')
                     ->onDelete('set null')->onUpdate('cascade');
-            
+    
             $table-> unsignedBigInteger('actual_state_infor_id')->nullable();
-            $table->foreign('actual_state_infor_id')->references('id')->on('actual_stateactual_state_infor')
+            $table->foreign('actual_state_infor_id')->references('id')->on('actual_state_infor')
                     ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
